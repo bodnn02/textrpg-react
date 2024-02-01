@@ -1,24 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
+import { Routes, Route, Link } from 'react-router-dom';
+
+import {Gamepage} from './pages/game/index'
+import {Notfoundpage} from './pages/Notfoundpage'
+
+import {GameLayout} from './components/GameLayout/GameLayout'
+
+import ResetCSS from './styles/reset.css';
+import Fonts from './styles/fonts.css';
+import Styles from './styles/style.css';
 
 function App() {
+  const { t } = useTranslation();
+
+  const location = useLocation();
+
+  const [title, setTitle] = useState("Default Title");
+
+  useEffect(() => {
+    switch(location.pathname) {
+      case '/': {
+        document.title = t('Dashboard');
+        break;
+      }
+      case '/log': {
+        document.title = t('Log');
+        break;
+      }
+      case '/wallet': {
+        document.title = t('Wallet');
+        break;
+      }
+      case '/settings': {
+        document.title = t('Settings');
+        break;
+      }
+      case '/info': {
+        document.title = t('Info');
+        break;
+      }
+      default: {
+        document.title = 'Coedra';
+        break;
+      }
+    }
+  }, [location, setTitle]);
+  
+  
+  const changeTitle = (event) => {
+    setTitle(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/game/' element={<GameLayout/>}>
+        <Route index element={<Gamepage/>}/>
+      </Route>
+      <Route path='*' element={<Notfoundpage/>} />
+    </Routes>
   );
 }
 
