@@ -7,6 +7,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 import {Gamepage} from './pages/game/index'
 import {Notfoundpage} from './pages/Notfoundpage'
+import {CharacterCreation} from './pages/CharacterCreation'
 
 import {GameLayout} from './components/GameLayout/GameLayout'
 
@@ -60,6 +61,7 @@ function App() {
       <Route path='/game/' element={<GameLayout/>}>
         <Route index element={<Gamepage/>}/>
       </Route>
+      <Route path='/character-creation' element={<CharacterCreation/>}/>
       <Route path='*' element={<Notfoundpage/>} />
     </Routes>
   );

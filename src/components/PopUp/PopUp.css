@@ -1,0 +1,43 @@
+.pop-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 1000px;
+  height: 700px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.pop-up::before {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.8);
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+}
+
+.pop-up {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgb(20, 20, 20);
+}
+.pop-up__header {
+  padding: 12px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.pop-up__title {
+  /* Title 40 48 */
+  color: rgb(245, 245, 245);
+  font-family: Clash Grotesk Variable;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: 0%;
+  text-align: left;
+}

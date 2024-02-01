@@ -6,6 +6,7 @@ import { styles } from './GameLayout.css';
 
 import { GameSidebar } from '../GameSidebar/GameSidebar';
 import { GameHeader } from '../GameHeader/GameHeader';
+import { GameFooter } from '../GameFooter/GameFooter'
 
 export const GameLayout = () => {
 
@@ -17,11 +18,7 @@ export const GameLayout = () => {
                 <div className="game-content">
                     <Outlet />
                 </div>
-                <div className="game-footer">
-                    <div className="copyright">
-                        © 2023
-                    </div>
-                </div>
+                <GameFooter/>
             </main>
         </div>
     )

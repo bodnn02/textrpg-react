@@ -7,6 +7,12 @@ body {
     grid-template-columns: 360px 1fr;
 }
 .game main {
+    max-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+}
+.game main {
     min-height: 100%;
     max-height: 100vh;
 
@@ -14,4 +20,7 @@ body {
     grid-template-rows: auto 1fr auto;
 
     overflow-y: auto;
+}
+.game-content {
+    margin: 23px 36px;
 }
