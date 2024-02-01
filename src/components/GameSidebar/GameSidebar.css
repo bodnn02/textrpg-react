@@ -1,0 +1,82 @@
+.logo {
+  color: rgb(245, 245, 245);
+  font-family: Cabinet Grotesk Variable;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-decoration: none;
+}
+.game-sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+
+  max-width: 360px;
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.game-sidebar__header {
+  padding: 24px 28px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.game-sidebar__content {
+  padding: 24px 0;
+  margin: 0 28px;
+}
+.game-nav {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.game-nav__icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}
+.game-nav__item {
+  padding: 4px 8px;
+
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+  color: inherit;
+
+  border-radius: 6px;
+  transition: background linear .2s;
+}
+.game-nav__item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+.game-nav__h4 {
+  /* 16 16 Bold */
+  color: rgb(245, 245, 245);
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+.game-nav__h5 {
+  /* 13 16 */
+  color: rgba(255, 255, 255, 0.6);
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0%;
+  text-align: left;
+}

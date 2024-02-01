@@ -1,0 +1,14 @@
+.game-header {
+    padding-top: 51px;
+    margin: 0 36px;
+}
+.text-h1 {
+  /* Title 40 48 */
+  color: rgb(245, 245, 245);
+  font-family: Clash Grotesk Variable;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: 0%;
+  text-align: left;
+}

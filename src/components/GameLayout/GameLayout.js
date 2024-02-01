@@ -10,14 +10,14 @@ import { GameHeader } from '../GameHeader/GameHeader';
 export const GameLayout = () => {
 
     return (
-        <div className='dashboard'>
+        <div className='game'>
             <GameSidebar />
             <main>
                 <GameHeader />
-                <div className="dashboard-content">
+                <div className="game-content">
                     <Outlet />
                 </div>
-                <div className="dashboard-footer">
+                <div className="game-footer">
                     <div className="copyright">
                         © 2023
                     </div>

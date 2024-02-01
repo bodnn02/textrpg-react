@@ -50,51 +50,8 @@ export const GameHeader = () => {
     };
 
     return (
-        <>
-            <header className="dashboard-header">
-                <Link className="logo" to="/">
-                    <img src="images/logo.svg" alt="" />
-                </Link>
-                <h1 className="text-h1">{t(pageTitle)}</h1>
-                <div className="dashboard-buttons">
-                    <div className="circle-btn">
-                        <img
-                            src="images/language-square.svg"
-                            alt=""
-                            onClick={handleClickLanguageSelector}
-                        />
-                        <div
-                            className={`sub-menu ${isOpenedLanguageMenu ? "opened" : ""}`}
-                        >
-                            <div className="sub-list">
-                                {languages.map((item) => (
-                                    <div
-                                        className={`sub-list__item ${currentLanguage === item.name ? "selected" : ""
-                                            }`}
-                                        onClick={() => handleChangeLanguage(item)}
-                                        key={item.name}
-                                    >
-                                        {item.name}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="circle-btn">
-                        <img src="images/off_solid.svg" alt="" />
-                    </div>
-                    <div className="circle-btn">
-                        <img src="images/login.svg" alt="" />
-                    </div>
-                </div>
-            </header>
-            <div className="m-header">
-                <h1 className="text-h1">{t(pageTitle)}</h1>
-                <div className="status">
-                    <div className="status__title">{t('status-title')}</div>
-                    <div className="status__value green-text">{t('status-on')}</div>
-                </div>
-            </div>
-        </>
+        <header className="game-header">
+            <h1 className="text-h1">{document.title}</h1>
+        </header>
     );
 };
