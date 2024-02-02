@@ -1,4 +1,6 @@
 .pop-up {
+  display: none;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +12,9 @@
   left: 50%;
 
   transform: translateX(-50%) translateY(-50%);
+}
+.pop-up.opened {
+  display: block;
 }
 
 .pop-up::before {
@@ -40,4 +45,8 @@
   line-height: 48px;
   letter-spacing: 0%;
   text-align: left;
+}
+.pop-up__content {
+  margin: 0 24px;
+  padding: 12px 0;
 }

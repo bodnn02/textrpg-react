@@ -7,7 +7,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 import {Gamepage} from './pages/game/index'
 import {Notfoundpage} from './pages/Notfoundpage'
-import {CharacterCreation} from './pages/CharacterCreation'
+import {ProfilePage} from './pages/ProfilePage'
 import {LoginPage} from './pages/LoginPage'
 import {RegisterPage} from './pages/RegisterPage'
 
@@ -65,7 +65,7 @@ function App() {
       </Route>
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='/register' element={<RegisterPage/>}/>
-      <Route path='/character-creation' element={<CharacterCreation/>}/>
+      <Route path='/character-creation' element={<ProfilePage/>}/>
       <Route path='*' element={<Notfoundpage/>} />
     </Routes>
   );
