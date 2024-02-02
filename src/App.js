@@ -8,6 +8,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 import {Gamepage} from './pages/game/index'
 import {Notfoundpage} from './pages/Notfoundpage'
 import {CharacterCreation} from './pages/CharacterCreation'
+import {LoginPage} from './pages/LoginPage'
+import {RegisterPage} from './pages/RegisterPage'
 
 import {GameLayout} from './components/GameLayout/GameLayout'
 
@@ -61,6 +63,8 @@ function App() {
       <Route path='/game/' element={<GameLayout/>}>
         <Route index element={<Gamepage/>}/>
       </Route>
+      <Route path='/login' element={<LoginPage/>}/>
+      <Route path='/register' element={<RegisterPage/>}/>
       <Route path='/character-creation' element={<CharacterCreation/>}/>
       <Route path='*' element={<Notfoundpage/>} />
     </Routes>
