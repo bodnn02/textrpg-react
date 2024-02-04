@@ -1,12 +1,26 @@
-import React from "react";
-
-import { resetStyles } from "../styles/reset.css";
-import { fontStyles } from "../styles/fonts.css";
-import { Styles } from "../styles/style.css";
-
-import { PopUp } from "../components/PopUp/PopUp";
+import React, { useState } from "react";
+import createSession from "../api/createSession"; // Импортируем функцию для создания сессии
 
 export const LoginPage = () => {
+  const [login, setLogin] = useState(""); // Состояние для хранения логина
+  const [password, setPassword] = useState(""); // Состояние для хранения пароля
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Вызываем функцию для создания сессии
+      await createSession(login, password);
+
+      // После успешной авторизации, вы можете перенаправить пользователя на другую страницу
+      // Например, используя react-router-dom
+      // history.push("/profile");
+    } catch (error) {
+      // Обработка ошибок, например, показ сообщения об ошибке
+      console.error("Ошибка авторизации:", error.message);
+    }
+  };
+
   return (
     <div className="auth">
       <div className="container">
@@ -17,10 +31,24 @@ export const LoginPage = () => {
           </div>
         </div>
         <div className="auth__content">
-          <form className="auth-form" action="">
-            <input className="input" placeholder="Login" type="text" />
-            <input className="input" placeholder="Password" type="password" />
-            <button className="primary-btn">Login</button>
+          <form className="auth-form" onSubmit={handleLogin}>
+            <input
+              className="input"
+              placeholder="Login"
+              type="text"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+            />
+            <input
+              className="input"
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="primary-btn" type="submit">
+              Login
+            </button>
           </form>
         </div>
       </div>
