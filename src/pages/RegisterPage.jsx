@@ -1,8 +1,10 @@
 // Импортируем useState
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Импортируем функцию registerUser
 import registerUser from "../api/registerUser";
+import checkSession from "../api/checkSession"; // Import the function for checking a session
+
 
 import { resetStyles } from "../styles/reset.css";
 import { fontStyles } from "../styles/fonts.css";
@@ -15,6 +17,33 @@ export const RegisterPage = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [reenteredPassword, setReenteredPassword] = useState("");
+
+  useEffect(() => {
+    // Check for an existing session on page load
+    const existingSessionToken = localStorage.getItem("sessionToken");
+
+    if (existingSessionToken) {
+      checkExistingSession(existingSessionToken);
+    }
+  }, []);
+
+  const checkExistingSession = async (sessionToken) => {
+    try {
+      // Call the function to check the session
+      const response = await checkSession(sessionToken);
+  
+      // If the response has a message indicating a valid session, redirect to the profile page
+      if (response.message === "Сессия действительна") {
+        window.location.href = "/profile";
+      } else {
+        // If the session check fails, clear the session token from local storage
+        localStorage.removeItem("sessionToken");
+      }
+    } catch (error) {
+      // Handle errors, for example, display an error message
+      console.error("Session check error:", error.message);
+    }
+  };
 
   // Обработчик события отправки формы
   const handleRegister = async (e) => {
@@ -46,8 +75,8 @@ export const RegisterPage = () => {
       <div className="container">
         <div className="auth__header">
           <div className="auth-tabs">
-            <div className="auth-tabs__item">Login</div>
-            <div className="auth-tabs__item selected">Register</div>
+            <a className="auth-tabs__item" href="/login">Login</a>
+            <a className="auth-tabs__item selected" href="/register">Register</a>
           </div>
         </div>
         <div className="auth__content">

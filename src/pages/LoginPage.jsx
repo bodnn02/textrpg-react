@@ -1,23 +1,61 @@
-import React, { useState } from "react";
-import createSession from "../api/createSession"; // Импортируем функцию для создания сессии
+import React, { useState, useEffect } from "react";
+import createSession from "../api/createSession"; // Import the function for creating a session
+import checkSession from "../api/checkSession"; // Import the function for checking a session
+
 
 export const LoginPage = () => {
-  const [login, setLogin] = useState(""); // Состояние для хранения логина
-  const [password, setPassword] = useState(""); // Состояние для хранения пароля
+  const [login, setLogin] = useState(""); // State for login
+  const [password, setPassword] = useState(""); // State for password
+  const [error, setError] = useState(null); // State for handling errors
+
+  useEffect(() => {
+    // Check for an existing session on page load
+    const existingSessionToken = localStorage.getItem("sessionToken");
+
+    if (existingSessionToken) {
+      checkExistingSession(existingSessionToken);
+    }
+  }, []);
+
+  const checkExistingSession = async (sessionToken) => {
+    try {
+      // Call the function to check the session
+      const response = await checkSession(sessionToken);
+  
+      // If the response has a message indicating a valid session, redirect to the profile page
+      if (response.message === "Сессия действительна") {
+        window.location.href = "/profile";
+      } else {
+        // If the session check fails, clear the session token from local storage
+        localStorage.removeItem("sessionToken");
+      }
+    } catch (error) {
+      // Handle errors, for example, display an error message
+      console.error("Session check error:", error.message);
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      // Вызываем функцию для создания сессии
-      await createSession(login, password);
+      // Call the function to create a session
+      const response = await createSession(login, password);
 
-      // После успешной авторизации, вы можете перенаправить пользователя на другую страницу
-      // Например, используя react-router-dom
-      // history.push("/profile");
+      // Check if the response contains a session token
+      if (response.sessionToken) {
+        // Save the session token to local storage
+        localStorage.setItem("sessionToken", response.sessionToken);
+
+        // Redirect to the profile page
+        window.location.href = "/profile";
+      } else {
+        setError("Authentication failed"); // Update error state if no session token in the response
+      }
     } catch (error) {
-      // Обработка ошибок, например, показ сообщения об ошибке
-      console.error("Ошибка авторизации:", error.message);
+      // Handle errors, for example, display an error message
+      setError(`Authentication failed: ${error.message}`);
+      console.error("Authentication error:", error.message);
     }
   };
 
@@ -26,8 +64,12 @@ export const LoginPage = () => {
       <div className="container">
         <div className="auth__header">
           <div className="auth-tabs">
-            <div className="auth-tabs__item selected">Login</div>
-            <div className="auth-tabs__item">Register</div>
+            <a className="auth-tabs__item selected" href="/login">
+              Login
+            </a>
+            <a className="auth-tabs__item" href="/register">
+              Register
+            </a>
           </div>
         </div>
         <div className="auth__content">
@@ -49,6 +91,7 @@ export const LoginPage = () => {
             <button className="primary-btn" type="submit">
               Login
             </button>
+            {error && <p className="error-message">{error}</p>}
           </form>
         </div>
       </div>

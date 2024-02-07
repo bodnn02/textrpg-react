@@ -15,12 +15,8 @@ const createSession = async (login, password) => {
       if (response.ok) {
         // Получаем данные из ответа
         const data = await response.json();
-  
-        // Сохраняем идентификатор сессии в localStorage
-        localStorage.setItem('sessionId', data.sessionId);
-  
-        // Перенаправляем на страницу профиля
-        window.location.href = '/profile';
+
+        return data;
       } else {
         // Обработка ошибки
         throw new Error(`Ошибка при создании сессии: ${response.statusText}`);

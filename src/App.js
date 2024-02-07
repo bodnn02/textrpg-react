@@ -63,6 +63,7 @@ function App() {
       <Route path='/game/' element={<GameLayout/>}>
         <Route index element={<Gamepage/>}/>
       </Route>
+      <Route path='/profile' element={<ProfilePage/>}/>
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='/register' element={<RegisterPage/>}/>
       <Route path='/character-creation' element={<ProfilePage/>}/>
